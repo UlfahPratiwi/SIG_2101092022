@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tugas 1</title>
+    <link rel="stylesheet" type="text/css"" href="leaflet.css"/>
+    <script type="text/javascript" src="leaflet.js"></script>
+</head>
+<body>
+    <div id="mapku" style="width: 100%; height: 600px;"></div>
+</body>
+<script type="text/javascript">
+     var mymap = L.map('mapku').setView([-0.9137562664733327, 100.46738292876353],17);
+    
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom:18,
+        id:'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(mymap);
+
+    //menampilkan tooltip dan popup
+
+    //L.marker([-0.914005438342167, 100.45817003491618],17).bindTooltip("Universitas Andalas").addTo(mymap); //UNAND
+    //L.marker([-0.9142889851192094, 100.4661080818181],17).bindTooltip("Politeknik Negeri Padang").addTo(mymap); // PNP
+    //L.marker([-0.8967724153113261, 100.35077265806244],17).bindTooltip("Universitas Negeri Padang").addTo(mymap); // UNP
+    //L.marker([-0.9302592073489339, 100.38650474446244],17).bindTooltip("Universitas Islam Negeri Imam Bonjol Kampus II").addTo(mymap); // UIN II
+    //L.marker([-0.8777685375170872, 100.38221721065389],17).bindTooltip("Universitas Bung Hatta Kampus II").addTo(mymap); // UBH II
+    //L.marker([-0.9579269128328791, 100.39765185559651],17).bindTooltip("Universitas Putra Indonesia").addTo(mymap); // UPI
+    //L.marker([-0.8700694197893541, 100.38353415483395],17).bindTooltip("Universitas Baiturrahmah").addTo(mymap); // Baiturahmah
+    //L.marker([-0.9225304482304673, 100.35991238009407],17).bindTooltip("STMIK Indonesia Padang").addTo(mymap); // STMIK
+    //L.marker([-0.9134060527228351, 100.3665809240722],17).bindTooltip("kampus kebidanan Poltekes Kemenkes Padang").addTo(mymap); // kampus kebidanan Poltekes Kemenkes Padang
+    //L.marker([-0.9098614271921863, 100.36392980006151],17).bindTooltip("Apikes IRIS").addTo(mymap); // Apikes IRIS
+    
+    var info_pnp = '<p style="text-align: center;"> <img src="http://p3m.pnp.ac.id/wp-content/uploads/2020/04/pnp.jpg" width="250px" height="100px"></p><p>Politeknik Negeri Padang didirikan pada tahun 1987, di mana keberadaan politeknik merupakan salah satu dari 17 (tujuh belas) politeknik pertama di Indonesia, yang bertujuan menjawab tantangan perkembangan dunia industri dan dunia usaha yang menuntut kompetensi dari tenaga-tenaga kerja terampil, professional dan mandiri yang lebih mengutamakan attitude, knowledge dan skill serta kompeten di bidangnya.</p>';
+    //L.marker([-0.9142889851192094, 100.4661080818181],17).bindTooltip("Politeknik Negeri Padang").bindPopup(info_pnp).addTo(mymap); //PNP
+
+    var info_unand = '<p style="text-align: center;"> <img src="https://cdn-2.tstatic.net/jateng/foto/bank/images/gerbang-ke-kampus-universitas-andalas-unand-di-kota-padang.jpg" width="250px" height="100px"></p><p>Universitas Andalas(biasa disingkat dengan Unand) adalah perguruan tinggi negeri Indonesia yang terletak di Kota Padang, Sumatra Barat, Indonesia. Universitas ini merupakan salah satu universitas tertua di luar Pulau Jawa yang dibuka secara resmi pada tanggal 23 Desember 1955 oleh Wakil Presiden Mohammad Hatta. </p>';
+    //L.marker([-0.914005438342167, 100.45817003491618],17).bindTooltip("Universitas Andalas").bindPopup(info_unand).addTo(mymap); //UNAND
+
+    var info_upi = '<p style="text-align: center;"> <img src="https://t-2.tstatic.net/tribunnewswiki/foto/bank/images/universitas-putra-indonesia-yptk-padang.jpg" width="250px" height="100px"></p><p>H. Herman Nawas & Dr.Hj. Zerni Melmusi, MM, Ak, CA Pencetus Ide Dan Pendiri UPI-YPTK Padang SEJARAH UNIVERSITAS PUTRA INDONESIA "YPTK" PADANG Seiring dengan pembangunan nasional dalam era globalisasi, kita memerlukan sumber daya manusia yang potensial dalam menguasai ilmu pengetahuan dan teknologi.</p>';
+    //L.marker([-0.9579269128328791, 100.39765185559651],17).bindTooltip("Universitas Putra Indonesia").bindPopup(info_upi).addTo(mymap); //UPI
+
+    var info_uin = '<p style="text-align: center;"> <img src="https://www.sumbarfokus.com/foto_berita/94Rektorat_UIN_-HERU.jpg" width="250px" height="100px"></p><p>Universitas Islam Negeri Imam Bonjol (UIN IB, sebelumnya bernama Institut Agama Islam Negeri Imam Bonjol/IAIN IB) adalah sebuah perguruan tinggi keagamaan Islam negeri (PTKIN) di Kota Padang, Sumatra Barat. UIN Padang diberi nama Imam Bonjol yaitu seorang Ulama dan Pahlawan Nasional Indonesia yang berasal dari Sumatra Barat.</p>';
+    //L.marker([-0.9302592073489339, 100.38650474446244],17).bindTooltip("Universitas Islam Negeri Imam Bonjol Kampus II").bindPopup(info_uin).addTo(mymap); //UIN II
+
+    var info_stemik = '<p style="text-align: center;"> <img src="https://klikpositif.com/wp-content/uploads/2022/01/berita-STMIK-Indonesia-Padang-Buka-2-Prodi-Baru-Salah-Satunya-Belum-Ada-di-Perguruan-Tinggi-Lain-di-KlikPositif-220121110524.jpeg"width="250px" height="100px"></p><p>Pada awal berdirinya, Universitas Metamedia Sebelumnya bernama STMIK Indonesia dimana STMIK Indonesia di sebelumnya bernama Akademi Informatika Komputer (AIK). Kemudian AIK berubah nama menjadi Akademi Informatika dan Komputer (AMIK) Indonesia tahun 1992 dan dikembangkan kembali menjadi STMIK Indonesia dengan SK Mendiknas No. 04/D/O/2002 pada tanggal 2 Januari 2002.</p>';
+    //L.marker([-0.9225304482304673, 100.35991238009407],17).bindTooltip("STMIK Indonesia Padang").bindPopup(info_stemik).addTo(mymap); //STMIK
+
+    var info_iris = '<p style="text-align: center;"> <img src="https://lh5.googleusercontent.com/p/AF1QipNgDVCUz3ExqT8APMCv2Y9OSUReNnremA1aMfgJ=w408-h306-k-no"width="250px" height="100px"></p><p>Akademi Perekam dan Informasi Kesehatan (Apikes) Iris adalah institusi pendidikan D3 di bidang kesehatan yang mengkhususkan diri pada program studi Ilmu Rekam Medis. Dalam pelaksanaan pendidikan adalah profesi yang sangat penting di bidang kesehatan, terutama ketika Undang-undang Perlindungan Konsumen telah berjalan efektif.</p>';
+    //L.marker([-0.9098614271921863, 100.36392980006151],17).bindTooltip("APIKES IRIS").bindPopup(info_iris).addTo(mymap); //Apikes IRIS
+
+    var info_unp = '<p style="text-align: center;"> <img src="https://www.arunala.com/photos/berita/foto-berita-fbs-unp-bantu-mahasiswanya-rp300-ribu-ini_300320032228_.jpeg"width="250px" height="100px"></p><p>Universitas Negeri Padang (UNP) adalah hasil konversi IKIP Padang menjadi Universitas pada tahun 1999 yang pada mulanya bernama perguruan tinggi pendidikan guru (PTPG) yang berdiri pada tanggal 23 Oktober 1954. UNP terdiri dari 9 fakultas dan 1 Pascasarjana. Kampus UNP terletak di kampus Air Tawar, Kota Padang. UNP terakreditasi Unggul Institusi dari BAN-PT.</p>';
+    //L.marker([-0.8967724153113261, 100.35077265806244],17).bindTooltip("Universitas Negeri Padang").bindPopup(info_unp).addTo(mymap); //UNP
+
+    var info_kemenkes = '<p style="text-align: center;"> <img src="https://poltekkes-pdg.ac.id/berita/img/1200/74.jpg"width="250px" height="100px"></p><p>Politeknik Kesehatan Kemenkes Padang pada awalnya , tahun 2002 didirikan dari gabungan 6 Akademi kesehatan di Provinsi Sumatera Barat, yaitu AKL, Akper Padang dan Solok, AKZI, Akbid Padang dan Bukittinggi. Tahun 2004 Akademi Kesehatan Gigi Bukittinggi juga bergabung dengan Politeknik Kesehatan Padang, yang berada di bawah Jurusan Keperawatan.</p>';
+    //L.marker([-0.9134060527228351, 100.3665809240722],17).bindTooltip("kampus kebidanan Poltekes Kemenkes Padang").bindPopup(info_kemenkes).addTo(mymap); //kemenkes
+
+    var info_unbrah = '<p style="text-align: center;"> <img src="https://www.unbrah.ac.id/wp-content/uploads/2019/07/RSGM-1-scaled.jpg"width="250px" height="100px"></p><p>Universitas Baiturrahmah pada waktu ini memiliki 7 (tujuh) program studi, yakni program studi Pendidikan Dokter yang berada di Fakultas Kedokteran, program studi Pendidikan Dokter Gigi di Fakultas Kedokteran Gigi, program studi Kesehatan Masyarakat di Fakultas Kesehatan Masyarakat, program studi Manajemen dan program studi Akuntansi keduanya difakultas Ekonomi serta, program studi D III Kebidanan serta program studi D III Teknik Radio Diagnostik dan Radio Terapi.</p>';
+    //L.marker([-0.8700694197893541, 100.38353415483395],17).bindTooltip("Universitas Baiturrahmah").bindPopup(info_unbrah).addTo(mymap); //baiturrahma
+
+    var info_ubh = '<p style="text-align: center;"> <img src="https://bunghatta.ac.id/images/newspost_images/besar/bung_hattajpg-1523346476.jpg"width="250px" height="100px"></p><p>Universitas Bung Hatta didirikan pada tanggal 20 April 1981, berangkat dari gagasan untuk ikut menyukseskan sektor pendidikan seperti yang tercantum dalam pasal 31(1) UUD 1945 dan GBHN, di samping terjadinya ketimpangan perbandingan jumlah lulusan SLTA pada tahun 1980 dimana jumlah lulusan SLTA yang mampu ditampung pada perguruan tinggi negeri hanya 38%.</p>';
+    //L.marker([-0.8777685375170872, 100.38221721065389],17).bindTooltip("Universitas Bung Hatta Kampus II").bindPopup(info_ubh).addTo(mymap); //UBH
+
+
+    //menampilkan polygon
+
+    var KoordinatAreaPoliteknik = [
+          
+        [-0.9147077376519951, 100.46564379056132],
+        [-0.9134794067529808, 100.46584268850081],
+        [-0.9123914561774883, 100.46593628753118],
+        [-0.9128476935556772, 100.46776146862321],
+        [-0.9130348678479252, 100.46910695468463],
+        [-0.914602452162829, 100.46897825601789],
+        [-0.9149651021680503, 100.46833476268415],
+        [-0.9148130231380698, 100.46652128147093],
+        [-0.9147077376519951, 100.46560869092491],
+
+    ];
+    var areaPoliteknik = L.polygon(KoordinatAreaPoliteknik,{color: 'orange'}).addTo(mymap);
+
+
+    var KoodinatAreaUnand = [
+        [-0.919033, 100.454021],
+        [-0.917683, 100.455204],
+        [-0.915825, 100.456428],
+        [-0.914285, 100.456974],
+        [-0.912304, 100.457456],
+        [-0.910966, 100.458393],
+        [-0.909482, 100.459539],
+        [-0.908317, 100.460641],
+        [-0.907859, 100.461402],
+        [-0.908738, 100.461951],
+        [-0.909406, 100.462365],
+        [-0.910416, 100.462377],
+        [-0.910992, 100.462423],
+        [-0.911508, 100.462729],
+        [-0.911075, 100.463514],
+        [-0.911198, 100.464439],
+        [-0.911757, 100.465099],
+        [-0.912365, 100.465927],
+        [-0.913119, 100.465758],
+        [-0.913778, 100.465796],
+        [-0.914240, 100.465661],
+        [-0.914433, 100.465328],
+        [-0.914661, 100.465210],
+        [-0.914705, 100.464488],
+        [-0.914705, 100.463351],
+        [-0.914994, 100.462550],
+        [-0.916077, 100.462067],
+        [-0.917364, 100.461928],
+        [-0.918451, 100.461099],
+        [-0.919030, 100.459773],
+        [-0.918687, 100.458303],
+        [-0.918408, 100.457563],
+        [-0.918453, 100.456719],
+        [-0.919260, 100.455379],
+        [-0.919137, 100.453925],
+        [-0.920446, 100.452245],
+        [-0.921448, 100.450929],
+        [-0.922725, 100.449084],
+    ];
+    var areaunand = L.polygon(KoodinatAreaUnand,{color: 'green'}).addTo(mymap);
+
+
+    var KoodinatAreaUnp = [
+        [-0.897134, 100.351773],
+        [-0.896933, 100.351177],
+        [-0.896704, 100.350556],
+        [-0.896277, 100.350367],
+        [-0.895559, 100.350054],
+        [-0.894701, 100.349657],
+        [-0.894733, 100.348477],
+        [-0.894502, 100.348135],
+        [-0.894372, 100.347877],
+        [-0.894380, 100.347808],
+        [-0.894708, 100.347791],
+        [-0.894783, 100.347571],
+        [-0.895288, 100.347567],
+        [-0.896094, 100.347709],
+        [-0.896480, 100.347795],
+        [-0.896716, 100.348170],
+        [-0.896941, 100.347644],
+        [-0.896995, 100.347451],
+        [-0.896630, 100.347365],
+        [-0.896587, 100.346764],
+        [-0.895525, 100.346732],
+        [-0.894817, 100.346861],
+        [-0.894688, 100.346539],
+        [-0.895364, 100.346475],
+        [-0.895621, 100.346400],
+        [-0.896973, 100.346389],
+        [-0.897016, 100.347440],
+        [-0.898668, 100.347429],
+        [-0.899140, 100.347408],
+        [-0.899955, 100.347204],
+        [-0.900009, 100.347998],
+        [-0.900188, 100.349056],
+        [-0.900681, 100.350537],
+        [-0.899694, 100.350912],
+        [-0.897945, 100.351545],
+    ];
+    var areaunp = L.polygon(KoodinatAreaUnp,{color: 'red'}).addTo(mymap);
+
+
+    var KoodinatAreaUin = [
+        [-0.930233, 100.387746],
+        [-0.930222, 100.386919],
+        [-0.930169, 100.386201],
+        [-0.930469, 100.385825],
+        [-0.930641, 100.385630],
+        [-0.930277, 100.385286],
+        [-0.929731, 100.384854],
+        [-0.929528, 100.384621],
+        [-0.929769, 100.384297],
+        [-0.929995, 100.384314],
+        [-0.930456, 100.384671],
+        [-0.931109, 100.385265],
+        [-0.931236, 100.385388],
+        [-0.931051, 100.385605],
+        [-0.931676, 100.386176],
+    ];
+    var areauin = L.polygon(KoodinatAreaUin,{color: 'orange'}).addTo(mymap);
+
+
+    var KoodinatAreaUbh = [
+        [-0.877807, 100.383888],
+        [-0.877470, 100.383695],
+        [-0.877467, 100.383471],
+        [-0.877008, 100.383149],
+        [-0.877244, 100.382795],
+        [-0.877619, 100.382186],
+        [-0.877874, 100.381786],
+        [-0.878078, 100.381480],
+        [-0.878207, 100.381507],
+        [-0.878349, 100.381389],
+        [-0.878518, 100.381362],
+        [-0.878770, 100.381472],
+        [-0.878856, 100.381563],
+        [-0.878639, 100.382003],
+        [-0.878312, 100.382520],
+        [-0.878125, 100.383072],
+        [-0.877996, 100.383496],
+        [-0.877840, 100.383872]
+    ];
+    var areaubh = L.polygon(KoodinatAreaUbh,{color: 'blue'}).addTo(mymap);
+
+
+    var KoodinatAreaUnbrah = [
+        [-0.870600, 100.382275],
+        [-0.870642, 100.382418],
+        [-0.870911, 100.382642],
+        [-0.870983, 100.382647],
+        [-0.871259, 100.382889],
+        [-0.870947, 100.383326],
+        [-0.870443, 100.383938],
+        [-0.870054, 100.384407],
+        [-0.869832, 100.384711],
+        [-0.869672, 100.384937],
+        [-0.869569, 100.385066],
+        [-0.869487, 100.385137],
+        [-0.869349, 100.385052],
+        [-0.869166, 100.384918],
+        [-0.869112, 100.384878],
+    ];
+    var areaunbrah = L.polygon(KoodinatAreaUnbrah,{color: 'green'}).addTo(mymap);
+
+
+    var KoodinatAreaKemenkes = [
+        [-0.913106, 100.366611],
+        [-0.913305, 100.366204],
+        [-0.913642, 100.366339],
+        [-0.913899, 100.366468],
+        [-0.913955, 100.366731],
+        [-0.913955, 100.366731],
+        [-0.913956, 100.367245],
+        [-0.913838, 100.367607],
+        [-0.913763, 100.367677],
+        [-0.913280, 100.367556],
+        [-0.912882, 100.367417],
+        [-0.913089, 100.366835],
+    ];
+    var areakemenkes = L.polygon(KoodinatAreaKemenkes,{color: 'red'}).addTo(mymap);
+
+
+    var KoodinatAreaStemik = [
+        [-0.922358, 100.360156],
+        [-0.922459, 100.359750],
+        [-0.922483, 100.359248],
+        [-0.922494, 100.358950],
+        [-0.922823, 100.358960],
+        [-0.922911, 100.358960],
+        [-0.922911, 100.359373],
+        [-0.922903, 100.360084],
+        [-0.922922, 100.360422],
+    ];
+    var areastemik = L.polygon(KoodinatAreaStemik,{color: 'blue'}).addTo(mymap);
+
+
+    var KoodinatAreaIris = [
+        [-0.909733, 100.364364],
+        [-0.909752, 100.364144],
+        [-0.909776, 100.363830],
+        [-0.909856, 100.363799],
+        [-0.910167, 100.363827],
+        [-0.910403, 100.363831],
+        [-0.910480, 100.363845],
+        [-0.910474, 100.364034],
+        [-0.910434, 100.364283],
+        [-0.910262, 100.364366],
+        [-0.910113, 100.364364],
+    ];
+    var areairis = L.polygon(KoodinatAreaIris,{color: 'purple'}).addTo(mymap);
+
+
+    var KoodinatAreaUpi = [
+        [-0.959223, 100.395885],
+        [-0.959272, 100.395632],
+        [-0.958816, 100.396221],
+        [-0.959084, 100.396623],
+        [-0.959202, 100.396795],
+        [-0.958596, 100.397289],
+        [-0.958215, 100.397691],
+        [-0.957904, 100.397836],
+        [-0.957716, 100.397509],
+        [-0.957956, 100.397337],
+        [-0.957999, 100.397238],
+        [-0.958093, 100.397254],
+        [-0.958683, 100.396876],
+        [-0.959034, 100.396653],
+    ];
+    var areaupi = L.polygon(KoodinatAreaUpi,{color: 'purple'}).addTo(mymap);
+   
+
+   // menggantikan icon marker
+   
+    //PNP
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_pnp = '<p style="text-align: center;"> <img src="http://p3m.pnp.ac.id/wp-content/uploads/2020/04/pnp.jpg" width="250px" height="100px"></p><p>Politeknik Negeri Padang didirikan pada tahun 1987, di mana keberadaan politeknik merupakan salah satu dari 17 (tujuh belas) politeknik pertama di Indonesia, yang bertujuan menjawab tantangan perkembangan dunia industri dan dunia usaha yang menuntut kompetensi dari tenaga-tenaga kerja terampil, professional dan mandiri yang lebih mengutamakan attitude, knowledge dan skill serta kompeten di bidangnya.</p>';
+   L.marker([-0.9142889851192094, 100.4661080818181] , {icon: kampusicon}).bindTooltip("Politeknik Negeri Padang").bindPopup(info_pnp).addTo(mymap);
+
+
+   //UNAND
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_unand = '<p style="text-align: center;"> <img src="https://cdn-2.tstatic.net/jateng/foto/bank/images/gerbang-ke-kampus-universitas-andalas-unand-di-kota-padang.jpg" width="250px" height="100px"></p><p>Universitas Andalas(biasa disingkat dengan Unand) adalah perguruan tinggi negeri Indonesia yang terletak di Kota Padang, Sumatra Barat, Indonesia. Universitas ini merupakan salah satu universitas tertua di luar Pulau Jawa yang dibuka secara resmi pada tanggal 23 Desember 1955 oleh Wakil Presiden Mohammad Hatta. </p>';
+   L.marker([-0.914005438342167, 100.45817003491618] , {icon: kampusicon}).bindTooltip("Universitas Andalas").bindPopup(info_unand).addTo(mymap);
+
+   
+   //UIN
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_uin = '<p style="text-align: center;"> <img src="https://www.sumbarfokus.com/foto_berita/94Rektorat_UIN_-HERU.jpg" width="250px" height="100px"></p><p>Universitas Islam Negeri Imam Bonjol (UIN IB, sebelumnya bernama Institut Agama Islam Negeri Imam Bonjol/IAIN IB) adalah sebuah perguruan tinggi keagamaan Islam negeri (PTKIN) di Kota Padang, Sumatra Barat. UIN Padang diberi nama Imam Bonjol yaitu seorang Ulama dan Pahlawan Nasional Indonesia yang berasal dari Sumatra Barat.</p>';
+   L.marker([-0.9302592073489339, 100.38650474446244] , {icon: kampusicon}).bindTooltip("Universitas Islam Negeri Imam Bonjol Kampus II").bindPopup(info_uin).addTo(mymap);
+
+
+   //UPI
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_upi = '<p style="text-align: center;"> <img src="https://t-2.tstatic.net/tribunnewswiki/foto/bank/images/universitas-putra-indonesia-yptk-padang.jpg" width="250px" height="100px"></p><p>H. Herman Nawas & Dr.Hj. Zerni Melmusi, MM, Ak, CA Pencetus Ide Dan Pendiri UPI-YPTK Padang SEJARAH UNIVERSITAS PUTRA INDONESIA "YPTK" PADANG Seiring dengan pembangunan nasional dalam era globalisasi, kita memerlukan sumber daya manusia yang potensial dalam menguasai ilmu pengetahuan dan teknologi.</p>';
+   L.marker([-0.9579269128328791, 100.39765185559651] , {icon: kampusicon}).bindTooltip("Universitas Putra Indonesia").bindPopup(info_upi).addTo(mymap);
+
+
+    //UBH
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_ubh = '<p style="text-align: center;"> <img src="https://bunghatta.ac.id/images/newspost_images/besar/bung_hattajpg-1523346476.jpg"width="250px" height="100px"></p><p>Universitas Bung Hatta didirikan pada tanggal 20 April 1981, berangkat dari gagasan untuk ikut menyukseskan sektor pendidikan seperti yang tercantum dalam pasal 31(1) UUD 1945 dan GBHN, di samping terjadinya ketimpangan perbandingan jumlah lulusan SLTA pada tahun 1980 dimana jumlah lulusan SLTA yang mampu ditampung pada perguruan tinggi negeri hanya 38%.</p>';
+   L.marker([-0.8777685375170872, 100.38221721065389] , {icon: kampusicon}).bindTooltip("Universitas Bung Hatta Kampus II").bindPopup(info_ubh).addTo(mymap);
+
+
+   //UNP
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_unp = '<p style="text-align: center;"> <img src="https://www.arunala.com/photos/berita/foto-berita-fbs-unp-bantu-mahasiswanya-rp300-ribu-ini_300320032228_.jpeg"width="250px" height="100px"></p><p>Universitas Negeri Padang (UNP) adalah hasil konversi IKIP Padang menjadi Universitas pada tahun 1999 yang pada mulanya bernama perguruan tinggi pendidikan guru (PTPG) yang berdiri pada tanggal 23 Oktober 1954. UNP terdiri dari 9 fakultas dan 1 Pascasarjana. Kampus UNP terletak di kampus Air Tawar, Kota Padang. UNP terakreditasi Unggul Institusi dari BAN-PT.</p>';
+   L.marker([-0.8967724153113261, 100.35077265806244] , {icon: kampusicon}).bindTooltip("Universitas Negeri Padang").bindPopup(info_unp).addTo(mymap);
+
+
+   //IRIS
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_iris = '<p style="text-align: center;"> <img src="https://lh5.googleusercontent.com/p/AF1QipNgDVCUz3ExqT8APMCv2Y9OSUReNnremA1aMfgJ=w408-h306-k-no"width="250px" height="100px"></p><p>Akademi Perekam dan Informasi Kesehatan (Apikes) Iris adalah institusi pendidikan D3 di bidang kesehatan yang mengkhususkan diri pada program studi Ilmu Rekam Medis. Dalam pelaksanaan pendidikan adalah profesi yang sangat penting di bidang kesehatan, terutama ketika Undang-undang Perlindungan Konsumen telah berjalan efektif.</p>';
+   L.marker([-0.9098614271921863, 100.36392980006151] , {icon: kampusicon}).bindTooltip("APIKES IRIS").bindPopup(info_iris).addTo(mymap);
+
+
+
+   //STEMIK
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_stemik = '<p style="text-align: center;"> <img src="https://klikpositif.com/wp-content/uploads/2022/01/berita-STMIK-Indonesia-Padang-Buka-2-Prodi-Baru-Salah-Satunya-Belum-Ada-di-Perguruan-Tinggi-Lain-di-KlikPositif-220121110524.jpeg"width="250px" height="100px"></p><p>Pada awal berdirinya, Universitas Metamedia Sebelumnya bernama STMIK Indonesia dimana STMIK Indonesia di sebelumnya bernama Akademi Informatika Komputer (AIK). Kemudian AIK berubah nama menjadi Akademi Informatika dan Komputer (AMIK) Indonesia tahun 1992 dan dikembangkan kembali menjadi STMIK Indonesia dengan SK Mendiknas No. 04/D/O/2002 pada tanggal 2 Januari 2002.</p>';
+   L.marker([-0.9225304482304673, 100.35991238009407] , {icon: kampusicon}).bindTooltip("STMIK Indonesia Padang").bindPopup(info_stemik).addTo(mymap);
+
+
+
+   //UNBRAH
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_unbrah = '<p style="text-align: center;"> <img src="https://www.unbrah.ac.id/wp-content/uploads/2019/07/RSGM-1-scaled.jpg"width="250px" height="100px"></p><p>Universitas Baiturrahmah pada waktu ini memiliki 7 (tujuh) program studi, yakni program studi Pendidikan Dokter yang berada di Fakultas Kedokteran, program studi Pendidikan Dokter Gigi di Fakultas Kedokteran Gigi, program studi Kesehatan Masyarakat di Fakultas Kesehatan Masyarakat, program studi Manajemen dan program studi Akuntansi keduanya difakultas Ekonomi serta, program studi D III Kebidanan serta program studi D III Teknik Radio Diagnostik dan Radio Terapi.</p>';
+   L.marker([-0.8700694197893541, 100.38353415483395] , {icon: kampusicon}).bindTooltip("Universitas Baiturrahmah").bindPopup(info_unbrah).addTo(mymap);
+
+
+   //Kemenkes
+   var LeafIcon = L.Icon.extend ({
+       options: {
+            iconSize: [36,36]
+       }
+   });
+   var kampusicon = new LeafIcon({iconUrl: 'images/campus.png'});
+   var info_kemenkes = '<p style="text-align: center;"> <img src="https://poltekkes-pdg.ac.id/berita/img/1200/74.jpg"width="250px" height="100px"></p><p>Politeknik Kesehatan Kemenkes Padang pada awalnya , tahun 2002 didirikan dari gabungan 6 Akademi kesehatan di Provinsi Sumatera Barat, yaitu AKL, Akper Padang dan Solok, AKZI, Akbid Padang dan Bukittinggi. Tahun 2004 Akademi Kesehatan Gigi Bukittinggi juga bergabung dengan Politeknik Kesehatan Padang, yang berada di bawah Jurusan Keperawatan.</p>';
+   L.marker([-0.9134060527228351, 100.3665809240722] , {icon: kampusicon}).bindTooltip("kampus kebidanan Poltekes Kemenkes Padang").bindPopup(info_kemenkes).addTo(mymap);
+
+
+   // membuat Line
+
+</script>
+</html>
